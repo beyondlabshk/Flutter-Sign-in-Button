@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_builder.dart';
-import 'package:flutter_signin_button/button_list.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'button_builder.dart';
+import 'button_list.dart';
 
 class SignInButton extends StatelessWidget {
   /// Here are the buttons builder which integrate with button builder
@@ -41,12 +42,7 @@ class SignInButton extends StatelessWidget {
     this.shape,
     this.text,
     this.elevation = 2.0,
-  }) : assert(
-            mini != true ||
-                !(button == Buttons.Google ||
-                    button == Buttons.GoogleDark ||
-                    button == Buttons.FacebookNew),
-            "Google and FacebookNew buttons do not support mini mode");
+  });
 
   /// The build funtion is used to build the widget which will switch to
   /// desired widget based on the enum class `Buttons`
@@ -59,29 +55,21 @@ class SignInButton extends StatelessWidget {
           elevation: elevation,
           key: ValueKey("Google"),
           text: text ?? 'Sign in with Google',
-          textColor: button == Buttons.Google
-              ? Color.fromRGBO(0, 0, 0, 0.54)
-              : Color(0xFFFFFFFF),
-          image: Container(
-            margin: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image(
-                image: AssetImage(
-                  button == Buttons.Google
-                      ? 'assets/logos/google_light.png'
-                      : 'assets/logos/google_dark.png',
-                  package: 'flutter_signin_button',
-                ),
-                height: 36.0,
+          mini: mini,
+          // textColor: button == Buttons.Google ? Color.fromRGBO(0, 0, 0, 0.54) : Color(0xFFFFFFFF),
+          image: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: const Image(
+              image: AssetImage(
+                'assets/images/google_light.png',
               ),
+              height: 36.0,
             ),
           ),
-          backgroundColor:
-              button == Buttons.Google ? Color(0xFFFFFFFF) : Color(0xFF4285F4),
+          backgroundColor: button == Buttons.Google ? Color(0xFFFFFFFF) : Color(0xFF4285F4),
           onPressed: onPressed,
           padding: padding,
-          innerPadding: EdgeInsets.all(0),
+          // innerPadding: EdgeInsets.all(0),
           shape: shape,
           height: 36.0,
         );
@@ -104,12 +92,8 @@ class SignInButton extends StatelessWidget {
                   ),
                 )
               : null,
-          backgroundColor: button == Buttons.FacebookNew
-              ? Color(0xFF1877f2)
-              : Color(0xFF3B5998),
-          innerPadding: button == Buttons.FacebookNew
-              ? EdgeInsets.fromLTRB(12, 0, 11, 0)
-              : null,
+          backgroundColor: button == Buttons.FacebookNew ? Color(0xFF1877f2) : Color(0xFF3B5998),
+          innerPadding: button == Buttons.FacebookNew ? EdgeInsets.fromLTRB(12, 0, 11, 0) : null,
           onPressed: onPressed,
           padding: padding,
           shape: shape,
@@ -136,8 +120,7 @@ class SignInButton extends StatelessWidget {
           textColor: button == Buttons.Apple ? Colors.black : Colors.white,
           icon: FontAwesomeIcons.apple,
           iconColor: button == Buttons.Apple ? Colors.black : Colors.white,
-          backgroundColor:
-              button == Buttons.Apple ? Color(0xFFFFFFFF) : Color(0xFF000000),
+          backgroundColor: button == Buttons.Apple ? Color(0xFFFFFFFF) : Color(0xFF000000),
           onPressed: onPressed,
           padding: padding,
           shape: shape,
